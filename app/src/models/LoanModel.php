@@ -22,7 +22,7 @@ class LoanModel extends SqlConnect {
         $req->execute(['book_id' => $data['book_id']]);
         $book = $req->fetch(PDO::FETCH_ASSOC);
 
-        if (!$book['available']) {
+        if (!$book['0']) {
             throw new HttpException("Ce livre n'est pas disponible", 400);
         }
 

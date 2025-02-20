@@ -43,9 +43,13 @@ class LoanController extends Controller {
                 throw new HttpException("L'ID du livre est requis", 400);
             }
 
+            if (empty($this->body['user_id'])) {
+                throw new HttpException("L'ID du livre est requis", 400);
+            }
+
             $data = [
                 'book_id' => $this->body['book_id'],
-                'user_id' => $_REQUEST->user_id // Vient du AuthMiddleware
+                'user_id' => $this->body['user_id']
             ];
 
             return $this->loan->create($data);

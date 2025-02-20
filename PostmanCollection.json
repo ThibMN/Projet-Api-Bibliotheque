@@ -1,0 +1,137 @@
+{
+    "info": {
+        "name": "Library API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "1. Register User",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "url": { "raw": "{{base_url}}/auth/register", "host": ["{{base_url}}"], "path": ["auth", "register"] },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}"
+                }
+            }
+        },
+        {
+            "name": "2. Login User",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "url": { "raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth", "login"] },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}"
+                }
+            }
+        },
+        {
+            "name": "3. Get Books List",
+            "request": {
+                "method": "GET",
+                "url": { "raw": "{{base_url}}/books", "host": ["{{base_url}}"], "path": ["books"] }
+            }
+        },
+        {
+            "name": "4. Get Book Details",
+            "request": {
+                "method": "GET",
+                "url": { "raw": "{{base_url}}/books/:id", "host": ["{{base_url}}"], "path": ["books", ":id"] }
+            }
+        },
+        {
+            "name": "5. Add Book (Auth Required)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" },
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "url": { "raw": "{{base_url}}/books", "host": ["{{base_url}}"], "path": ["books"] },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"title\": \"Le Petit Prince\",\n    \"author_id\": 1,\n    \"isbn\": \"978\",\n    \"published_year\": 1943\n}"
+                }
+            }
+        },
+        {
+            "name": "6. Update Book (Auth Required)",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" },
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "url": { "raw": "{{base_url}}/books/:id", "host": ["{{base_url}}"], "path": ["books", ":id"] },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"title\": \"Le Petit Prince - Édition collector\"\n}"
+                }
+            }
+        },
+        {
+            "name": "7. Delete Book (Auth Required)",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" }
+                ],
+                "url": { "raw": "{{base_url}}/books/:id", "host": ["{{base_url}}"], "path": ["books", ":id"] }
+            }
+        },
+        {
+            "name": "8. Create Author (Auth Required)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" },
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "url": { "raw": "{{base_url}}/authors", "host": ["{{base_url}}"], "path": ["authors"] },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Antoine de Saint-Exupéry\",\n    \"biography\": \"Écrivain, poète et aviateur français\"\n}"
+                }
+            }
+        },
+        {
+            "name": "9. Get Authors List",
+            "request": {
+                "method": "GET",
+                "url": { "raw": "{{base_url}}/authors", "host": ["{{base_url}}"], "path": ["authors"] }
+            }
+        },
+        {
+            "name": "10. Borrow a Book (Auth Required)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" },
+                    { "key": "Content-Type", "value": "application/json" }
+                ],
+                "url": { "raw": "{{base_url}}/loans", "host": ["{{base_url}}"], "path": ["loans"] },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"book_id\": 1\n}"
+                }
+            }
+        },
+        {
+            "name": "11. Return a Book (Auth Required)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    { "key": "Authorization", "value": "Bearer {{token}}" }
+                ],
+                "url": { "raw": "{{base_url}}/loans/:id/return", "host": ["{{base_url}}"], "path": ["loans", ":id", "return"] }
+            }
+        }
+    ]
+}
